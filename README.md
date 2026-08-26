@@ -18,7 +18,8 @@ Every existing tool stops short of a mergeable submission:
 | Cyfrin `clearsig` | from Sourcify ABI | `--v2` alpha | ❌ | ❌ | ❌ | ❌ |
 | Sourcify SDK / Rust SDK | ❌ (render-side) | ✅ | — | — | — | — |
 | LI.FI's pipeline | ✅ but bespoke to their structs | ✅ | ❌ | ✅ hand-rolled | via registry CI | ✅ |
-| **this** | ✅ | ✅ | ✅ intents from `@notice`/`@param` | ✅ generated | ✅ all six checks | ✅ scaffolded |
+| port's clear-signing-helper | ✅ agent playbook, address-first | ✅ | reads it | ✅ hand-authored (copy-adapt) | lint only | ✅ draft |
+| **this** | ✅ from forge artifacts | ✅ | ✅ intents from `@notice`/`@param` | ✅ **generated** | ✅ all six checks | ✅ scaffolded |
 
 The registry **requires** a `testsv2/*.tests.json` per descriptor (CI hard-fails without it), and nothing generates them.
 Both existing generators emit the old v1 shape with heuristic labels and no `intent`. NatSpec — the place developers
@@ -70,5 +71,6 @@ Research done ([docs/RESEARCH.md](docs/RESEARCH.md)), pipeline being built. Near
 
 [ERC-7730](https://eips.ethereum.org/EIPS/eip-7730) · [registry](https://github.com/ethereum/clear-signing-erc7730-registry) ·
 [clearsigning.org](https://clearsigning.org) · [portdeveloper/clear-signing-helper](https://github.com/portdeveloper/clear-signing-helper)
-(address-first playbook this complements — that one starts from a deployed address, this one starts from your Foundry workflow
-and adds v2 + NatSpec + test generation)
+— port's skill is the address-first playbook (v2-aware, hand-authored testsv2, hardened on real registry PRs) and this
+borrows from it gratefully; this repo starts from your Foundry deploy artifacts instead of a deployed address, and adds
+automated testsv2 generation + full local CI preflight
